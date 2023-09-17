@@ -7,11 +7,11 @@ public class DataBase {
    private static int meetId;
 
     public static void generateTestUsers() {
-        CreateUser("a","a");
-        CreateUser("b","b");
+        createUser("a","a");
+        createUser("b","b");
     }
 
-    public static void CreateMeeting(String username,Date date, String startTime,String endTime,String room,String guest,int existingId)
+    public static void createMeeting(String username,Date date, String startTime,String endTime,String room,String guest,int existingId)
     {
         Meeting meet = new Meeting();
         meet.date = date;
@@ -30,11 +30,11 @@ public class DataBase {
             userHM.get(username).meetingHM.put(existingId,meet);
         }
     }
-    public static void DeleteMeeting(String username,int meetId)
+    public static void deleteMeeting(String username,int meetId)
     {
         userHM.get(username).meetingHM.remove(meetId);
     }
-    private static void CreateUser(String username,String password)
+    private static void createUser(String username,String password)
     {
         UserData user = new UserData();
         user.password = password;

@@ -12,8 +12,6 @@ public class LoginPage{
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
-    private Map<String, String> userCredentials = new HashMap<>(); // Хранение данных пользователей
-    private Map<String, List<DataBase>> Db = new HashMap<>(); // Хранение событий
     //----
 
     public static void main(String[] args){
@@ -50,10 +48,9 @@ public class LoginPage{
                         showWarning("Wrong Data!", "Please check your username and password");
                     }
                 });
-        //panel setup
         loginPanel.setLayout(new BoxLayout(loginPanel,BoxLayout.PAGE_AXIS));
 
-        JPanel textPanel = new JPanel(); // greeting panel
+        JPanel textPanel = new JPanel();
         textPanel.add(titleLabel);
         textPanel.add(Box.createVerticalGlue());
         textPanel.setBackground(Color.white);
@@ -61,7 +58,7 @@ public class LoginPage{
 
         loginPanel.add(Box.createRigidArea(new Dimension(5,0)));
 
-        JPanel inputPanel = new JPanel(); // username and pass panel
+        JPanel inputPanel = new JPanel();
         inputPanel.add(usernameField);
         inputPanel.add(Box.createRigidArea(new Dimension(5,0)));
         inputPanel.add(Box.createHorizontalGlue());
@@ -79,7 +76,6 @@ public class LoginPage{
         frame.add(loginPanel);
     }
 
-    //login&pass check
     private boolean validateCredentials(String username, String password) {
         return DataBase.userHM.containsKey(username) && password.equals(DataBase.userHM.get(username).password);
     }
@@ -87,8 +83,6 @@ public class LoginPage{
     private void showWarning (String title, String message) {
         JOptionPane.showMessageDialog(frame,message,title,JOptionPane.ERROR_MESSAGE);
     }
-
-    //Create form
     private void createUI() {
 
         frame = new JFrame("Meeting");

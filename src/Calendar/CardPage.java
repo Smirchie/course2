@@ -68,13 +68,18 @@ public class CardPage {
                                 }
                         }
                 }
+                if(meetId!=-1)
+                {
+                        room.setText(DataBase.userHM.get(username).meetingHM.get(meetId).room);
+                        guests.setText(DataBase.userHM.get(username).meetingHM.get(meetId).guest);
+                }
                 delete.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                                 if(meetId!=-1)
                                 {
                                         System.out.println(DataBase.userHM.get(username).meetingHM.get(meetId).toString());
-                                        DataBase.DeleteMeeting(username,meetId);
+                                        DataBase.deleteMeeting(username,meetId);
                                 }
                                 CalendarPage.updateTable(0);
                                 CalendarPage.updateTable(-1);
@@ -107,7 +112,7 @@ public class CardPage {
                                         showWarning("Wrong Time", "The completion time is longer than the start time");
                                 }
                                 else {
-                                DataBase.CreateMeeting(username,cal.getTime(),startTime.getSelectedItem().toString(),endTime.getSelectedItem().toString(),room.getText(),guests.getText(),meetId);
+                                DataBase.createMeeting(username,cal.getTime(),startTime.getSelectedItem().toString(),endTime.getSelectedItem().toString(),room.getText(),guests.getText(),meetId);
                                 CalendarPage.updateTable(0);//костыль
                                 CalendarPage.updateTable(-1);//костыль
                                 frame.dispose();
